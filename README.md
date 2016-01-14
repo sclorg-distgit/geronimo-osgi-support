@@ -1,0 +1,1 @@
+# geronimo-osgi-support
