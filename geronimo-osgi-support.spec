@@ -7,7 +7,7 @@
 
 Name:             %{?scl_prefix}%{pkg_name}
 Version:          1.0
-Release:          15.11%{?dist}
+Release:          15.12%{?dist}
 Summary:          OSGI spec bundle support
 License:          ASL 2.0 and W3C
 URL:              http://geronimo.apache.org/
@@ -21,11 +21,11 @@ BuildArch:        noarch
 
 BuildRequires:    %{?scl_prefix_java_common}javapackages-tools
 BuildRequires:    %{?scl_prefix_java_common}maven-local
-BuildRequires:    maven30-felix-osgi-core
-BuildRequires:    maven30-felix-osgi-compendium
-BuildRequires:    maven30-geronimo-parent-poms
-BuildRequires:    maven30-maven-resources-plugin
-BuildRequires:    maven30-maven-surefire-provider-junit
+BuildRequires:    %{?scl_prefix}felix-osgi-core
+BuildRequires:    %{?scl_prefix}felix-osgi-compendium
+BuildRequires:    %{?scl_prefix}geronimo-parent-poms
+BuildRequires:    %{?scl_prefix}maven-resources-plugin
+BuildRequires:    %{?scl_prefix}maven-surefire-provider-junit
 
 
 %description
@@ -41,7 +41,7 @@ This package contains the API documentation for %{pkg_name}.
 
 %prep
 %setup -q -n %{pkg_name}-%{version}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 iconv -f iso8859-1 -t utf-8 LICENSE > LICENSE.conv && mv -f LICENSE.conv LICENSE
 sed -i 's/\r//' LICENSE NOTICE
@@ -57,13 +57,13 @@ sed -i 's/\r//' LICENSE NOTICE
 %{?scl:EOF}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_build
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -76,6 +76,9 @@ set -e -x
 %doc LICENSE NOTICE
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.0-15.12
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 1.0-15.11
 - maven33 rebuild
 
