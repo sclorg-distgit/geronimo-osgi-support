@@ -7,7 +7,7 @@
 
 Name:             %{?scl_prefix}%{pkg_name}
 Version:          1.0
-Release:          15.12%{?dist}
+Release:          15.13%{?dist}
 Summary:          OSGI spec bundle support
 License:          ASL 2.0 and W3C
 URL:              http://geronimo.apache.org/
@@ -20,7 +20,7 @@ Patch2:           remove-itests.patch
 BuildArch:        noarch
 
 BuildRequires:    %{?scl_prefix_java_common}javapackages-tools
-BuildRequires:    %{?scl_prefix_java_common}maven-local
+BuildRequires:    %{?scl_prefix}maven-local
 BuildRequires:    %{?scl_prefix}felix-osgi-core
 BuildRequires:    %{?scl_prefix}felix-osgi-compendium
 BuildRequires:    %{?scl_prefix}geronimo-parent-poms
@@ -76,6 +76,9 @@ set -e -x
 %doc LICENSE NOTICE
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1.0-15.13
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.0-15.12
 - maven33 rebuild #2
 
